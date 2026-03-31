@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --color-comic-orange: #FF6B35;
+  --color-comic-yellow: #FFE135;
+  --color-comic-red: #FF3B30;
+  --color-comic-blue: #007AFF;
+  --color-comic-green: #34C759;
+  --color-comic-purple: #8B5CF6;
+  --color-comic-dark: #2D2D2D;
+  --color-comic-cream: #FFF8F0;
+  --color-comic-paper: #FFFDF7;
+
+  --font-bangers: 'Bangers', cursive;
+  --font-hand: 'Patrick Hand', cursive;
+  --font-gaegu: 'Gaegu', cursive;
+  --font-marker: 'Permanent Marker', cursive;
+  --font-comic: 'Comic Neue', cursive;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-comic-cream);
+  font-family: var(--font-hand);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+/* Comic halftone overlay */
+.halftone {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+/* Paper texture */
+.paper-texture {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Comic panel border */
+.comic-panel {
+  border: 3px solid var(--color-comic-dark);
+  border-radius: 4px;
+  overflow: hidden;
+  background: white;
+}
+
+/* Speech bubble */
+.speech-bubble {
+  position: relative;
+  background: white;
+  border: 2px solid var(--color-comic-dark);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+  line-height: 1.3;
+  max-width: 80%;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--color-comic-dark);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 22px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+  z-index: 1;
+}
+
+/* Narration box */
+.narration-box {
+  background: #FFFDE7;
+  border: 2px solid var(--color-comic-dark);
+  padding: 6px 12px;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Sound effect text */
+.sfx-text {
+  font-family: var(--font-bangers);
+  font-size: 28px;
+  color: var(--color-comic-red);
+  text-shadow: 2px 2px 0 var(--color-comic-yellow), -1px -1px 0 var(--color-comic-dark);
+  transform: rotate(-5deg);
+}
+
+/* POW burst shape */
+.pow-burst {
+  background: var(--color-comic-yellow);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Page flip animation */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.animate-pop-in {
+  animation: popIn 0.35s ease-out;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.3s ease-out;
+}
+
+/* Stagger children animations */
+.stagger-children > * { animation-fill-mode: both; }
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 480ms; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-comic-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-comic-orange);
+  border-radius: 4px;
+}
+
+/* Touch-friendly inputs */
+input, textarea, select, button {
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"], textarea {
+  font-size: 16px; /* prevent iOS zoom */
+}
