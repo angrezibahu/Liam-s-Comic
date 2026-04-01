@@ -2,7 +2,7 @@
   "name": "Story Machine",
   "short_name": "Story Machine",
   "description": "Create your own comics!",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#FFF8F0",
   "theme_color": "#FF6B35",
