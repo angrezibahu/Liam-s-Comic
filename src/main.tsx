@@ -6,7 +6,7 @@ import App from './App'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Liam-s-Comic/">
       <App />
     </BrowserRouter>
   </StrictMode>,
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
 // Register service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {
+    navigator.serviceWorker.register('/Liam-s-Comic/sw.js').catch(() => {
       // SW registration failed, app works without it
     });
   });
